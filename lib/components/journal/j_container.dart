@@ -3,6 +3,7 @@ import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:dailythingspro/utils/calendar/glyph/return_glyph.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class JContainer extends StatelessWidget {
   final String dayKey;
@@ -21,14 +22,16 @@ class JContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
       decoration: BoxDecoration(
-          color: DailyThingsColors.backgroundColor,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(8),
-          border:
-              Border.all(color: DailyThingsColors.themeBeige.withOpacity(0.3))),
+          border: Border.all(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.5))),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -38,9 +41,9 @@ class JContainer extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.hourglass_bottom_rounded,
-                  color: DailyThingsColors.tertiaryGray,
+                Icon(
+                  PhosphorIconsRegular.timer,
+                  color: Theme.of(context).colorScheme.secondary,
                   size: 12,
                 ),
                 const SizedBox(
@@ -48,16 +51,16 @@ class JContainer extends StatelessWidget {
                 ),
                 Text(
                   DateFormat('hh : mm a').format(DateTime.parse(time)),
-                  style: TextStyles.body,
+                  style: textStyles.body,
                 ),
               ],
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Icon(
+                Icon(
                   Icons.book_rounded,
-                  color: DailyThingsColors.themeBeige,
+                  color: Theme.of(context).colorScheme.tertiary,
                   size: 18,
                 ),
                 const SizedBox(
@@ -68,19 +71,19 @@ class JContainer extends StatelessWidget {
                     title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyles.heading,
+                    style: textStyles.heading,
                   ),
                 ),
               ],
             ),
             Text(
               description,
-              style: TextStyles.body,
+              style: textStyles.body,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
             ),
             Divider(
-              color: DailyThingsColors.themeOrange.withOpacity(0.3),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
               indent: 0,
               endIndent: 0,
             ),

@@ -40,6 +40,8 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     ref.listen(selectedDateProvider, (previous, next) {
       fetchJournal(next.id);
@@ -47,17 +49,17 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
 
     return SliverToBoxAdapter(
         child: widget.selectedId.isEmpty
-            ? const Padding(
-                padding: EdgeInsets.all(15.0),
+            ? Padding(
+                padding: const EdgeInsets.all(15.0),
                 child: Column(
                   children: [
                     Text(
                       "select a date to view journals",
-                      style: TextStyles.subheading,
+                      style: textStyles.subheading,
                     ),
                     Text(
                       "more journals = less bad stuff?",
-                      style: TextStyles.italic,
+                      style: textStyles.italic,
                     )
                   ],
                 ),
@@ -66,16 +68,16 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
                 child: FlexItems(widgetList: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Available journals 📖",
-                        style: TextStyles.subheading,
+                        style: textStyles.subheading,
                       ),
                       Text(
                         "tap on the journals to read them",
-                        style: TextStyles.body,
+                        style: textStyles.body,
                       )
                     ],
                   ),
@@ -101,7 +103,7 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
                                 widgetList: _journalList
                                     .map((e) => GestureDetector(
                                           onTap: () {
-                                            Navigator.push(
+                                            Navigator.pushAndRemoveUntil(
                                                 context,
                                                 PageTransition(
                                                     child: FullJournalView(
@@ -114,7 +116,8 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
                                                         mood: e.mood,
                                                         details: e.description),
                                                     type: PageTransitionType
-                                                        .leftToRight));
+                                                        .leftToRight),
+                                                (t) => false);
                                           },
                                           child: JContainer(
                                               dayKey: e.dayKey,
@@ -136,16 +139,23 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset(
-                                    DailyThingsImages.noData,
-                                    height: 150,
-                                  ),
+                                  MediaQuery(
+                                      data: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? MediaQuery.of(context)
+                                              .copyWith(invertColors: false)
+                                          : MediaQuery.of(context)
+                                              .copyWith(invertColors: true),
+                                      child: Image.asset(
+                                        DailyThingsImages.noData,
+                                        height: 150,
+                                      )),
                                   const SizedBox(
                                     height: 20,
                                   ),
-                                  const Text(
+                                  Text(
                                     "No entries for the date",
-                                    style: TextStyles.subheading,
+                                    style: textStyles.subheading,
                                   ),
                                 ],
                               ),
@@ -153,9 +163,9 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
                           ),
                         )
                       : const SizedBox.shrink(),
-                  const Text(
+                  Text(
                     "We intentionally don't allow you to modify your previous journals, made a mistake? let it be- journals are never meant to be perfect 😉",
-                    style: TextStyles.caption,
+                    style: textStyles.caption,
                     textAlign: TextAlign.center,
                   )
                 ], space: 20),

@@ -10,6 +10,8 @@ class OnboardInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -35,9 +37,9 @@ class OnboardInfo extends ConsumerWidget {
         const SizedBox(
           height: 30,
         ),
-        const Text(
+        Text(
           "For more information on privacy visit our priivacy policy page here, tap on the chat bubble on right to continue ahead",
-          style: TextStyles.caption,
+          style: textStyles.caption,
         )
       ],
     );

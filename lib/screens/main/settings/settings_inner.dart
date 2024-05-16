@@ -11,13 +11,15 @@ class SettingsInner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     return CustomScrollView(
       slivers: [
         SliverAppBar.large(
-          title: const Text(
+          title: Text(
             "Settings",
-            style: TextStyles.subheading,
+            style: textStyles.subheading,
           ),
           stretch: true,
           floating: true,
@@ -28,12 +30,12 @@ class SettingsInner extends ConsumerWidget {
         ),
         const SettingsTop(),
         const SettingsItems(),
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: Text(
               "You are using our version 1.0.0, this is one of our very first releases, we will be rolling out many more features soon ✨",
-              style: TextStyles.italic,
+              style: textStyles.italic,
             ),
           ),
         )

@@ -7,19 +7,21 @@ class DailyTop extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const SliverToBoxAdapter(
+    TextStyles textStyles = TextStyles(context);
+
+    return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Organize your life",
-              style: TextStyles.splashHeading,
+              style: textStyles.splashHeading,
             ),
             Text(
               "organized life = better outcomes",
-              style: TextStyles.italic,
+              style: textStyles.italic,
             )
           ],
         ),

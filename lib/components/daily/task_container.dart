@@ -26,6 +26,8 @@ class TaskContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     return Slidable(
       endActionPane: ActionPane(motion: const StretchMotion(), children: [
@@ -45,16 +47,21 @@ class TaskContainer extends ConsumerWidget {
         width: size.width,
         decoration: BoxDecoration(
             color: isComplete
-                ? DailyThingsColors.backgroundColor
+                ? Theme.of(context).colorScheme.surface
                 : DailyThingsColors.themeOrange,
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-                color: isComplete
-                    ? Colors.white
-                    : DailyThingsColors.backgroundColor),
+            border: Theme.of(context).brightness == Brightness.dark
+                ? Border.all(
+                    color: isComplete
+                        ? Theme.of(context).colorScheme.primary.withOpacity(0.6)
+                        : Theme.of(context).colorScheme.background)
+                : Border.all(
+                    color: isComplete
+                        ? Theme.of(context).colorScheme.primary.withOpacity(0.6)
+                        : Theme.of(context).colorScheme.primary),
             boxShadow: [
               BoxShadow(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.primary,
                 offset: isComplete ? const Offset(1, 1) : const Offset(3, 3),
                 blurRadius: 0,
                 spreadRadius: 0,
@@ -65,26 +72,41 @@ class TaskContainer extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style:
-                    !isComplete ? TextStyles.headingInvert : TextStyles.heading,
-              ),
+              Theme.of(context).brightness == Brightness.dark
+                  ? Text(
+                      title,
+                      style: !isComplete
+                          ? textStyles.headingInvert
+                          : textStyles.heading,
+                    )
+                  : Text(
+                      title,
+                      style:
+                          !isComplete ? textStyles.heading : textStyles.heading,
+                    ),
               Text(
                 desc,
-                style: isComplete
-                    ? TextStyles.bodyNavbarActive
-                    : TextStyles.bodyInvert,
+                style: Theme.of(context).brightness == Brightness.dark
+                    ? isComplete
+                        ? textStyles.bodyNavbarActive
+                        : textStyles.bodyInvert
+                    : isComplete
+                        ? textStyles.bodyNavbarActive
+                        : textStyles.body,
               ),
               Text(
                 completionTime,
-                style: isComplete ? TextStyles.italic : TextStyles.italicInvert,
+                style: isComplete ? textStyles.italic : textStyles.italicInvert,
               ),
               Text(
                 isComplete ? "Wohoo task is complete" : "yet to complete task",
-                style: isComplete
-                    ? TextStyles.bodyNavbarActive
-                    : TextStyles.bodyInvert,
+                style: Theme.of(context).brightness == Brightness.dark
+                    ? isComplete
+                        ? textStyles.bodyNavbarActive
+                        : textStyles.bodyInvert
+                    : isComplete
+                        ? textStyles.bodyNavbarActive
+                        : textStyles.body,
               )
             ],
           ),

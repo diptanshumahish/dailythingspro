@@ -17,6 +17,8 @@ class MoodGlyph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return GestureDetector(
       onTap: () {
         res(name);
@@ -24,13 +26,13 @@ class MoodGlyph extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color: isActive
-                ? DailyThingsColors.themeBeige
-                : DailyThingsColors.themeBeige.withOpacity(0.1),
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.surface,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
                 color: isActive
-                    ? DailyThingsColors.backgroundColor.withOpacity(0.2)
-                    : DailyThingsColors.themeBeige.withOpacity(0.2))),
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.primary.withOpacity(0.5))),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
           child: Row(
@@ -41,15 +43,15 @@ class MoodGlyph extends StatelessWidget {
               PhosphorIcon(
                 icon,
                 color: isActive
-                    ? DailyThingsColors.backgroundColor
-                    : DailyThingsColors.tertiaryGray,
+                    ? Theme.of(context).colorScheme.background
+                    : Theme.of(context).colorScheme.secondary,
               ),
               const SizedBox(
                 width: 5,
               ),
               Text(
                 name,
-                style: isActive ? TextStyles.bodyInvert : TextStyles.body,
+                style: isActive ? textStyles.bodyInvert : textStyles.body,
               )
             ],
           ),

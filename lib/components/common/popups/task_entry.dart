@@ -30,6 +30,8 @@ class TaskEntryPopup extends ConsumerStatefulWidget {
 class _TaskEntryPopupState extends ConsumerState<TaskEntryPopup> {
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -40,17 +42,18 @@ class _TaskEntryPopupState extends ConsumerState<TaskEntryPopup> {
           child: Center(
             child: Container(
                 decoration: BoxDecoration(
-                    boxShadow: const [
+                    boxShadow: [
                       BoxShadow(
-                        color: DailyThingsColors.tertiaryGray,
-                        offset: Offset(2, 2),
+                        color: Theme.of(context).colorScheme.primary,
+                        offset: const Offset(2, 2),
                         blurRadius: 0,
                         spreadRadius: 0,
                       )
                     ],
                     borderRadius: BorderRadius.circular(8),
-                    color: Colors.black,
-                    border: Border.all(color: Colors.white)),
+                    color: Theme.of(context).colorScheme.surface,
+                    border: Border.all(
+                        color: Theme.of(context).colorScheme.primary)),
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: SingleChildScrollView(
@@ -60,13 +63,13 @@ class _TaskEntryPopupState extends ConsumerState<TaskEntryPopup> {
                           child: Image.asset(
                             DailyThingsImages.addTask,
                           )),
-                      const Text(
+                      Text(
                         "Enter a new task",
-                        style: TextStyles.heading,
+                        style: textStyles.heading,
                       ),
-                      const Text(
+                      Text(
                         "Add your task for the day below, make sure to add your completion time as well",
-                        style: TextStyles.body,
+                        style: textStyles.body,
                       ),
                       CommonInput(
                         controller: _titleController,
@@ -86,9 +89,9 @@ class _TaskEntryPopupState extends ConsumerState<TaskEntryPopup> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "task completion deadline",
-                            style: TextStyles.bodyNavbarActive,
+                            style: textStyles.bodyNavbarActive,
                           ),
                           const SizedBox(
                             height: 5,
@@ -98,10 +101,10 @@ class _TaskEntryPopupState extends ConsumerState<TaskEntryPopup> {
                               Navigator.of(context).push(
                                 showPicker(
                                   backgroundColor:
-                                      DailyThingsColors.backgroundColor,
+                                      Theme.of(context).colorScheme.background,
                                   accentColor: DailyThingsColors.themeOrange,
-                                  cancelStyle: TextStyles.subheading,
-                                  okStyle: TextStyles.subheading,
+                                  cancelStyle: textStyles.subheading,
+                                  okStyle: textStyles.subheading,
                                   okText: "Confirm",
                                   context: context,
                                   value: Time(
@@ -132,7 +135,7 @@ class _TaskEntryPopupState extends ConsumerState<TaskEntryPopup> {
                                     vertical: 8, horizontal: 5),
                                 child: Text(
                                   _time.isEmpty ? "--" : _time,
-                                  style: TextStyles.subheading,
+                                  style: textStyles.subheading,
                                 ),
                               ),
                             ),

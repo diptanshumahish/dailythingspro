@@ -26,8 +26,10 @@ class WriterScreen extends ConsumerStatefulWidget {
 class _WriterScreenState extends ConsumerState<WriterScreen> {
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Scaffold(
-      backgroundColor: DailyThingsColors.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       floatingActionButton: GestureDetector(
         onTap: () async {
           if (mounted) {
@@ -59,10 +61,12 @@ class _WriterScreenState extends ConsumerState<WriterScreen> {
         },
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(100)),
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: BorderRadius.circular(100)),
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Icon(
+              color: Theme.of(context).colorScheme.background,
               _isContentAvailable ? Icons.check : Icons.close,
               size: 15,
             ),
@@ -73,17 +77,18 @@ class _WriterScreenState extends ConsumerState<WriterScreen> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              backgroundColor: DailyThingsColors.backgroundColor,
-              title: const Text(
+              elevation: 5,
+              backgroundColor: Theme.of(context).colorScheme.surface,
+              title: Text(
                 "Pen down your thoughts",
-                style: TextStyles.subheading,
+                style: textStyles.subheading,
               ),
               centerTitle: true,
               leading: IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.arrow_back_ios_new_rounded,
-                    color: DailyThingsColors.themeBeige,
+                    color: Theme.of(context).colorScheme.primary,
                   )),
             ),
             SliverToBoxAdapter(
@@ -106,11 +111,14 @@ class _WriterScreenState extends ConsumerState<WriterScreen> {
                       child: Text(
                         DateFormat("dd MMMM, y | hh:mm a")
                             .format(DateTime.now()),
-                        style: TextStyles.bodyNavbarActive,
+                        style: textStyles.bodyNavbarActive,
                       ),
                     ),
-                    const Divider(
-                      color: Colors.white12,
+                    Divider(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withOpacity(0.2),
                     ),
                     const SizedBox(
                       height: 5,
@@ -137,19 +145,19 @@ class _WriterScreenState extends ConsumerState<WriterScreen> {
                         controller: _titleController,
                         scrollPadding: EdgeInsets.zero,
                         autocorrect: false,
-                        style: TextStyles.heading,
+                        style: textStyles.heading,
                         selectionWidthStyle: BoxWidthStyle.tight,
                         selectionHeightStyle: BoxHeightStyle.tight,
                         maxLines: 2,
                         minLines: 1,
                         spellCheckConfiguration:
-                            SpellCheckConfiguration.disabled(),
-                        decoration: const InputDecoration(
+                            const SpellCheckConfiguration.disabled(),
+                        decoration: InputDecoration(
                             contentPadding: EdgeInsets.zero,
                             border: InputBorder.none,
                             labelText: "Your great title",
                             isCollapsed: true,
-                            labelStyle: TextStyles.headingPlaceholder,
+                            labelStyle: textStyles.headingPlaceholder,
                             floatingLabelBehavior: FloatingLabelBehavior.never,
                             enabledBorder: InputBorder.none,
                             focusedBorder: InputBorder.none),
@@ -162,19 +170,19 @@ class _WriterScreenState extends ConsumerState<WriterScreen> {
                       child: TextFormField(
                         controller: _detailsController,
                         spellCheckConfiguration:
-                            SpellCheckConfiguration.disabled(),
+                            const SpellCheckConfiguration.disabled(),
                         selectionHeightStyle: BoxHeightStyle.tight,
                         scrollPadding: EdgeInsets.zero,
-                        style: TextStyles.body,
+                        style: textStyles.body,
                         keyboardType: TextInputType.multiline,
                         minLines: 1,
                         maxLines: 400,
                         selectionWidthStyle: BoxWidthStyle.tight,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           contentPadding: EdgeInsets.zero,
                           border: InputBorder.none,
                           labelText: "pen down your thoughts",
-                          labelStyle: TextStyles.body,
+                          labelStyle: textStyles.body,
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                           isCollapsed: true,
                           focusedBorder: InputBorder.none,

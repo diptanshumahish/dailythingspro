@@ -44,6 +44,8 @@ class _HeatMapActivitiesState extends ConsumerState<HeatMapActivities> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     ref.listen(currentDateProvider, (previous, next) {
       updateHeatMap();
@@ -55,9 +57,9 @@ class _HeatMapActivitiesState extends ConsumerState<HeatMapActivities> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               "Your activities data",
-              style: TextStyles.subheading,
+              style: textStyles.subheading,
             ),
             const SizedBox(
               height: 10,
@@ -68,7 +70,7 @@ class _HeatMapActivitiesState extends ConsumerState<HeatMapActivities> {
                 width: size.width,
                 decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.white12,
+                      color: Theme.of(context).colorScheme.tertiary,
                     ),
                     borderRadius: BorderRadius.circular(8)),
                 child: Padding(
@@ -81,21 +83,21 @@ class _HeatMapActivitiesState extends ConsumerState<HeatMapActivities> {
                     defaultColor: DailyThingsColors.themeBeige,
                     scrollable: true,
                     showText: true,
-                    textColor: Colors.white,
+                    textColor: Theme.of(context).colorScheme.primary,
                     // showColorTip: false,
-                    colorTipHelper: const [
+                    colorTipHelper: [
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "less active",
-                          style: TextStyles.caption,
+                          style: textStyles.caption,
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
                           "more active",
-                          style: TextStyles.caption,
+                          style: textStyles.caption,
                         ),
                       )
                     ],

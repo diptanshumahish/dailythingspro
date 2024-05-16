@@ -13,15 +13,17 @@ class HomeTop extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userDetails = ref.watch(userProvider);
+    TextStyles textStyles = TextStyles(context);
+
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               "Today is, ",
-              style: TextStyles.body,
+              style: textStyles.body,
             ),
             Animate(
               effects: const [
@@ -31,26 +33,26 @@ class HomeTop extends ConsumerWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.calendar_today,
-                    color: DailyThingsColors.themeOrange,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   const SizedBox(
                     width: 10,
                   ),
                   Text(
                     DateFormat('d MMM, yyyy (EEEE)').format(DateTime.now()),
-                    style: TextStyles.heading,
+                    style: textStyles.heading,
                   ),
                 ],
               ),
             ),
-            const Divider(
-              color: Colors.white24,
+            Divider(
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            const Text(
+            Text(
               "Heyo ^^",
-              style: TextStyles.subheading,
+              style: textStyles.subheading,
             ),
             Animate(
               effects: const [
@@ -59,7 +61,7 @@ class HomeTop extends ConsumerWidget {
               ],
               child: Text(
                 "${userDetails.name ?? "buddy"},",
-                style: TextStyles.splashHeading,
+                style: textStyles.splashHeading,
               ),
             ),
             Animate(
@@ -69,7 +71,7 @@ class HomeTop extends ConsumerWidget {
               ],
               child: Text(
                 greetUser(TimeOfDay.now(), userDetails.gender ?? "M"),
-                style: TextStyles.subheading,
+                style: textStyles.subheading,
               ),
             ),
           ],

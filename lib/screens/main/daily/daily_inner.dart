@@ -23,6 +23,8 @@ class DailyInner extends ConsumerStatefulWidget {
 class _DailyInnerState extends ConsumerState<DailyInner> {
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     final selectedDate = ref.watch(selectedDateProvider);
     return CustomScrollView(
@@ -36,14 +38,14 @@ class _DailyInnerState extends ConsumerState<DailyInner> {
                 },
                 icon: const PhosphorIcon(PhosphorIconsFill.flower))
           ],
-          title: const Text(
+          title: Text(
             "Organize your life",
-            style: TextStyles.subheading,
+            style: textStyles.subheading,
           ),
           stretch: true,
           floating: true,
           leading: const SizedBox.shrink(),
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           expandedHeight: size.height / 4.5,
           flexibleSpace: const TopBar(imgLink: DailyThingsImages.dailyPage),
         ),

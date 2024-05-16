@@ -47,10 +47,12 @@ class _WelcomeOnboardedUserState extends ConsumerState<WelcomeOnboardedUser> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: DailyThingsColors.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
@@ -60,28 +62,30 @@ class _WelcomeOnboardedUserState extends ConsumerState<WelcomeOnboardedUser> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  DailyThingsImages.breathe,
+                  Theme.of(context).brightness == Brightness.dark
+                      ? DailyThingsImages.breathe
+                      : DailyThingsImages.breatheLight,
                   height: 190,
                 ).animate().fade(duration: const Duration(milliseconds: 1200)),
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
+                Text(
                   "Breathe in",
-                  style: TextStyles.splashHeading,
+                  style: textStyles.splashHeading,
                 ).animate().fade(duration: const Duration(milliseconds: 1300)),
-                const Text(
+                Text(
                   "and out!",
-                  style: TextStyles.heading,
+                  style: textStyles.heading,
                 ).animate().fade(
                     delay: const Duration(seconds: 2),
                     duration: const Duration(seconds: 1)),
                 const SizedBox(
                   height: 5,
                 ),
-                const Text(
+                Text(
                   "Let's go",
-                  style: TextStyles.subheading,
+                  style: textStyles.subheading,
                 ).animate().fade(
                     delay: const Duration(seconds: 4),
                     duration: const Duration(seconds: 1)),

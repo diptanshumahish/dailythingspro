@@ -12,14 +12,16 @@ class MoodChooser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "How are you feeling?",
-            style: TextStyles.subheading,
+            style: textStyles.subheading,
           ),
           const SizedBox(
             height: 5,

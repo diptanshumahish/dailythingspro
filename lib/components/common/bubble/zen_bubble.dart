@@ -18,6 +18,8 @@ class ZenBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Animate(
       effects: [
         FadeEffect(
@@ -30,10 +32,10 @@ class ZenBubble extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            const CircleAvatar(
-              backgroundColor: DailyThingsColors.themeOrange,
+            CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.primary,
               radius: 12,
-              child: Text(
+              child: const Text(
                 "Z",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -42,7 +44,8 @@ class ZenBubble extends StatelessWidget {
             Flexible(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white38),
+                  border:
+                      Border.all(color: Theme.of(context).colorScheme.primary),
                   borderRadius: BorderRadius.only(
                     topLeft: const Radius.circular(20),
                     topRight: const Radius.circular(20),
@@ -58,7 +61,7 @@ class ZenBubble extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   child: Text(
                     chat,
-                    style: TextStyles.subheading,
+                    style: textStyles.subheading,
                   ),
                 ),
               ),

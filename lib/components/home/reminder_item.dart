@@ -9,6 +9,8 @@ class ReminderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Padding(
       padding: const EdgeInsets.only(top: 5),
       child: Column(
@@ -19,11 +21,11 @@ class ReminderItem extends StatelessWidget {
             children: [
               Text(
                 desc,
-                style: TextStyles.bodyNavbarActive,
+                style: textStyles.bodyNavbarActive,
               ),
               Text(
                 completionTime,
-                style: TextStyles.italic,
+                style: textStyles.italic,
               )
             ],
           ),

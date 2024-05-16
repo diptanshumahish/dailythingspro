@@ -9,6 +9,8 @@ class DailyProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final double progressFraction = progress.clamp(0, 100) / 100.0;
 
     return SliverToBoxAdapter(
@@ -21,18 +23,21 @@ class DailyProgress extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Container(
             decoration: BoxDecoration(
-                color: DailyThingsColors.backgroundColor,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                    color: DailyThingsColors.tertiaryGray.withOpacity(0.2))),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withOpacity(0.5))),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Your day progress",
-                    style: TextStyles.heading,
+                    style: textStyles.heading,
                   ),
                   const SizedBox(height: 10.0), // Add some spacing
 
@@ -42,9 +47,12 @@ class DailyProgress extends StatelessWidget {
                     child: LinearProgressIndicator(
                       value: progressFraction,
                       minHeight: 5.0, // Adjust minimum height
-                      backgroundColor: Colors.white54, // Background color
-                      color:
-                          progressFraction < 0.5 ? Colors.orange : Colors.white,
+                      backgroundColor: Theme.of(context)
+                          .primaryColor
+                          .withOpacity(0.2), // Background color
+                      color: progressFraction < 0.5
+                          ? Colors.orange
+                          : const Color(0xFF8ED891),
                     ),
                   ),
                   const SizedBox(
@@ -54,7 +62,7 @@ class DailyProgress extends StatelessWidget {
                     progress.isNaN
                         ? "No tasks for the day yet"
                         : "You are ${progress.toStringAsFixed(2)} % done",
-                    style: TextStyles.bodyNavbarActive,
+                    style: textStyles.bodyNavbarActive,
                   )
                 ],
               ),

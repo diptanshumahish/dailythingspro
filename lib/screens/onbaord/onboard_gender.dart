@@ -13,6 +13,8 @@ class OnboardGender extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     setGender(String type) async {
       await addToLocalStorage(DailyThingsKeys.userGenderKey, type);
       ref.read(onboardTabsProvider.notifier).updateTab(4);
@@ -60,9 +62,9 @@ class OnboardGender extends ConsumerWidget {
         const SizedBox(
           height: 10,
         ),
-        const Text(
+        Text(
           "Tap on the bubbles to go ahead, your gender will help zen provide you more accurate help in organizing stuff in better ways, trust me it will be worth it 🤗",
-          style: TextStyles.body,
+          style: textStyles.body,
           textAlign: TextAlign.center,
         )
       ],

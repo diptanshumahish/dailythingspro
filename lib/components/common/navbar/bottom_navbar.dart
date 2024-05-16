@@ -15,9 +15,10 @@ class BottomNavbar extends StatelessWidget {
         child: Container(
           height: 70,
           decoration: BoxDecoration(
-              color: const Color.fromARGB(108, 40, 41, 43),
-              border:
-                  Border.all(color: const Color.fromARGB(97, 255, 255, 255)),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+              border: Border.all(
+                  color:
+                      Theme.of(context).colorScheme.primary.withOpacity(0.2)),
               borderRadius: BorderRadius.circular(90)),
           child: const Center(
             child: Row(

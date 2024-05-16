@@ -14,6 +14,8 @@ class HomeInner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     final currentId = ref.watch(currentDateProvider);
 
@@ -28,14 +30,14 @@ class HomeInner extends ConsumerWidget {
                 },
                 icon: const PhosphorIcon(PhosphorIconsFill.flower))
           ],
-          title: const Text(
+          title: Text(
             "DailyThings",
-            style: TextStyles.subheading,
+            style: textStyles.subheading,
           ),
           stretch: true,
           floating: true,
           leading: const SizedBox.shrink(),
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           expandedHeight: size.height / 3,
           flexibleSpace: const TopBar(imgLink: DailyThingsImages.home),
         ),

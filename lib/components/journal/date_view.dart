@@ -18,6 +18,8 @@ class DateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Opacity(
@@ -25,12 +27,12 @@ class DateView extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
               color: currentDay
-                  ? DailyThingsColors.themeBeige
-                  : DailyThingsColors.backgroundColor,
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
                   color: isSelectedDate
-                      ? DailyThingsColors.themeOrange
+                      ? Theme.of(context).colorScheme.primary
                       : DailyThingsColors.tertiaryGray.withOpacity(0.6))),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
@@ -39,14 +41,14 @@ class DateView extends StatelessWidget {
                 Text(
                   date.toString(),
                   style: currentDay
-                      ? TextStyles.headingInvert
-                      : TextStyles.heading,
+                      ? textStyles.headingInvert
+                      : textStyles.heading,
                 ),
                 Text(
                   day,
                   style: currentDay
-                      ? TextStyles.subheadingDark
-                      : TextStyles.subheading,
+                      ? textStyles.subheadingDark
+                      : textStyles.subheading,
                 )
               ],
             ),

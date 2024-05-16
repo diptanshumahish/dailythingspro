@@ -3,6 +3,7 @@ import 'package:dailythingspro/state/app_start/app_start_date.dart';
 import 'package:dailythingspro/state/current/current_date.dart';
 import 'package:dailythingspro/state/journal/selected_date.dart';
 import 'package:dailythingspro/state/onboard_Tabs/onboard_tabs.dart';
+import 'package:dailythingspro/state/theme/theme_state.dart';
 import 'package:dailythingspro/state/user/user.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -25,3 +26,6 @@ final currentDateProvider =
 final appStartDateProvider =
     StateNotifierProvider<AppStartDateNotifier, AppStartDate>(
         (ref) => AppStartDateNotifier());
+final appThemeProvider =
+    StateNotifierProvider<ThemeCurrentNotifier, ThemeCurrent>(
+        (ref) => ThemeCurrentNotifier());

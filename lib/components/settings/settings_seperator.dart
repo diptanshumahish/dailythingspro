@@ -9,17 +9,19 @@ class SettingsSeparator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           name,
-          style: TextStyles.caption,
+          style: textStyles.caption,
         ),
         Icon(
           icon,
-          color: DailyThingsColors.tertiaryGray,
+          color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
           size: 12,
         )
       ],

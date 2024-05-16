@@ -16,6 +16,8 @@ class SettingsItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return InkWell(
       onTap: () {
         fn();
@@ -31,17 +33,17 @@ class SettingsItem extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyles.subheading,
+                  style: textStyles.subheading,
                 ),
                 Text(
                   details,
-                  style: TextStyles.bodyNavbarActive,
+                  style: textStyles.bodyNavbarActive,
                 )
               ],
             ),
             Icon(
               icon,
-              color: DailyThingsColors.tertiaryGray,
+              color: Theme.of(context).colorScheme.primary,
             )
           ],
         ),

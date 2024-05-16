@@ -5,7 +5,6 @@ import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:vibration/vibration.dart';
@@ -29,6 +28,8 @@ class NavbarContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     final selectedTab = ref.watch(tabsProvider);
     return GestureDetector(
       onTap: () async {
@@ -58,14 +59,14 @@ class NavbarContent extends ConsumerWidget {
           PhosphorIcon(
             selectedTab.tab != idx ? icon : selectedIcon,
             color: selectedTab.tab != idx
-                ? Colors.white54
-                : DailyThingsColors.themeBeige,
+                ? Theme.of(context).colorScheme.secondary
+                : Theme.of(context).colorScheme.primary,
           ),
           Text(
             name,
             style: selectedTab.tab == idx
-                ? TextStyles.bodyNavbarActive
-                : TextStyles.body,
+                ? textStyles.bodyNavbarActive
+                : textStyles.body,
           )
         ],
       ),

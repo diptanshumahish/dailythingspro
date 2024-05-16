@@ -16,6 +16,8 @@ class OnBoardName extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -32,18 +34,18 @@ class OnBoardName extends ConsumerWidget {
         const SizedBox(
           height: 30,
         ),
-        const Text(
+        Text(
           "I would like you to call me by the name,",
-          style: TextStyles.subheading,
+          style: textStyles.subheading,
         ),
         const SizedBox(
           height: 10,
         ),
         TextField(
           controller: _nameController,
-          decoration: const InputDecoration(
-              labelText: "Your name", labelStyle: TextStyles.subheading),
-          style: TextStyles.subheading,
+          decoration: InputDecoration(
+              labelText: "Your name", labelStyle: textStyles.subheading),
+          style: textStyles.subheading,
         ),
         const SizedBox(
           height: 10,

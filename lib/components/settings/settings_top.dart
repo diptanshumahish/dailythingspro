@@ -6,15 +6,17 @@ class SettingsTop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SliverToBoxAdapter(
+    TextStyles textStyles = TextStyles(context);
+
+    return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Settings",
-              style: TextStyles.splashHeading,
+              style: textStyles.splashHeading,
             )
           ],
         ),

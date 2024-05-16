@@ -17,7 +17,7 @@ class CommonInput extends StatelessWidget {
       minLines: 1,
       controller: controller,
       maxLines: 4,
-      style: const TextStyle(color: Colors.white),
+      style: TextStyle(color: Theme.of(context).colorScheme.primary),
       decoration: InputDecoration(
         prefixIcon: Icon(icon),
 
@@ -25,14 +25,15 @@ class CommonInput extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: DailyThingsColors.themeBeige.withOpacity(0.3))),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.2))),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
                 color: DailyThingsColors.themeBeige.withOpacity(0.9))),
         labelText: labelText,
-        labelStyle: const TextStyle(color: Colors.white54),
-        fillColor:
-            DailyThingsColors.backgroundColor, // Slight gray background color
+        labelStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
+        fillColor: Theme.of(context)
+            .colorScheme
+            .surface, // Slight gray background color
         filled: true, // Apply background color
         border: const OutlineInputBorder(borderSide: BorderSide.none),
       ),

@@ -20,6 +20,7 @@ class ResponseBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
     return Animate(
       effects: [
         FadeEffect(
@@ -77,14 +78,16 @@ class ResponseBubble extends StatelessWidget {
                               ? const Radius.circular(20)
                               : Radius.zero,
                         ),
-                        color: DailyThingsColors.themeBeige,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? DailyThingsColors.themeBeige
+                            : DailyThingsColors.backgroundColor,
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 10, horizontal: 15),
                         child: Text(
                           chat,
-                          style: TextStyles.subheadingDark,
+                          style: textStyles.subheadingDark,
                         ),
                       ),
                     ),

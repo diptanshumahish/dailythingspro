@@ -45,6 +45,8 @@ class _OnboardAgeState extends ConsumerState<OnboardAge> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Column(
       children: [
         ZenBubble(
@@ -89,9 +91,9 @@ class _OnboardAgeState extends ConsumerState<OnboardAge> {
         const SizedBox(
           height: 10,
         ),
-        const Text(
+        Text(
           "Tap on your age group to go ahead",
-          style: TextStyles.body,
+          style: textStyles.body,
         )
       ],
     );

@@ -18,6 +18,8 @@ class WarningPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Padding(
@@ -45,14 +47,14 @@ class WarningPopup extends StatelessWidget {
                       ),
                       Text(
                         errorHeading ?? "Umm there's an issue",
-                        style: TextStyles.heading,
+                        style: textStyles.heading,
                       ),
                     ],
                   ),
                   const Divider(),
                   Text(
                     error,
-                    style: TextStyles.subheading,
+                    style: textStyles.subheading,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(

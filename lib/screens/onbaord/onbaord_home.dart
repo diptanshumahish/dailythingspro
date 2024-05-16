@@ -45,10 +45,12 @@ class OnBoardHome extends ConsumerStatefulWidget {
 class _OnBoardHomeState extends ConsumerState<OnBoardHome> {
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     final activeIndex = ref.watch(onboardTabsProvider);
     return Scaffold(
-      backgroundColor: DailyThingsColors.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: CustomScrollView(slivers: [
         SliverToBoxAdapter(
           child: Padding(
@@ -63,18 +65,20 @@ class _OnBoardHomeState extends ConsumerState<OnBoardHome> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20),
                     child: Image.asset(
-                      DailyThingsImages.zen,
+                      Theme.of(context).brightness == Brightness.dark
+                          ? DailyThingsImages.zen
+                          : DailyThingsImages.zenLight,
                       height: 120,
                     ),
                   ),
                   Text(
                     widget.notFirstTimeTitle ?? "First Things first!",
-                    style: TextStyles.splashHeading,
+                    style: textStyles.splashHeading,
                   ),
                   Text(
                     widget.notFirstTimeDetails ??
                         "Let's know each other a bit :)",
-                    style: TextStyles.subheading,
+                    style: textStyles.subheading,
                   ),
                   AnimatedSwitcher(
                       switchInCurve: Curves.easeInOut,

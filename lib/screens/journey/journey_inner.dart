@@ -11,6 +11,8 @@ class JourneyInner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     final user = ref.watch(userProvider);
     return SafeArea(
       bottom: false,
@@ -23,13 +25,13 @@ class JourneyInner extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Your journey",
-                    style: TextStyles.splashHeading,
+                    style: textStyles.splashHeading,
                   ),
                   Text(
                     "${user.name}, here's your journey so far",
-                    style: TextStyles.subheading,
+                    style: textStyles.subheading,
                   )
                 ],
               ),
@@ -43,26 +45,26 @@ class JourneyInner extends ConsumerWidget {
                   child: Image.asset(DailyThingsImages.journey)),
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "your activity heat map",
-                    style: TextStyles.heading,
+                    style: textStyles.heading,
                   ),
                   Text(
                     "the more you add daily tasks, the greener it gets",
-                    style: TextStyles.italic,
+                    style: textStyles.italic,
                   )
                 ],
               ),
             ),
           ),
-          HeatMapActivities(),
-          SomethingElse()
+          const HeatMapActivities(),
+          const SomethingElse()
         ],
       ),
     );

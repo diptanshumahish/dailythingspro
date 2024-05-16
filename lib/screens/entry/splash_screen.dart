@@ -39,6 +39,8 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
 
     Future<int> initialCheck() async {
@@ -54,12 +56,11 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
       if (mounted) {
         ref.read(currentDateProvider.notifier).updateID(_cal.currentDayId);
         ref.read(selectedDateProvider.notifier).updateID(_cal.currentDayId);
-        print(_cal.currentDayId);
       }
     });
 
     return Scaffold(
-      backgroundColor: DailyThingsColors.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Stack(
         children: [
           Center(
@@ -75,7 +76,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         curve: Curves.easeInOut)
                   ],
                   child: Image.asset(
-                    DailyThingsImages.logo,
+                    Theme.of(context).brightness == Brightness.dark
+                        ? DailyThingsImages.logo
+                        : DailyThingsImages.logoLight,
                     height: 90,
                   ),
                 ),
@@ -87,14 +90,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         duration: Duration(milliseconds: 400),
                         curve: Curves.easeIn),
                   ],
-                  child: const Text(
+                  child: Text(
                     "DailyThings",
-                    style: TextStyles.splashHeading,
+                    style: textStyles.splashHeading,
                   ),
                 ),
-                const Text(
+                Text(
                   "Everything you need in your life",
-                  style: TextStyles.body,
+                  style: textStyles.body,
                 )
               ],
             ),
@@ -150,9 +153,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                       const SizedBox(
                         height: 5,
                       ),
-                      const Text(
-                        "Version 0.0.1",
-                        style: TextStyles.caption,
+                      Text(
+                        "Version 3.0.0",
+                        style: textStyles.caption,
                       )
                     ],
                   ),

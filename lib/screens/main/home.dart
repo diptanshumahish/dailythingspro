@@ -40,8 +40,7 @@ class _HomeMainState extends ConsumerState<HomeMain> {
     final pageIndex = ref.watch(tabsProvider);
 
     return Scaffold(
-      // backgroundColor: Colors.black,
-      backgroundColor: DailyThingsColors.backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: AnimatedSwitcher(
           switchInCurve: Curves.easeInOut,
           switchOutCurve: Curves.easeInOut,

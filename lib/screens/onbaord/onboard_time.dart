@@ -17,6 +17,8 @@ class OnboardTime extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     return Column(
       children: [
         const ZenBubble(
@@ -31,10 +33,10 @@ class OnboardTime extends ConsumerWidget {
             fn: () {
               Navigator.of(context).push(
                 showPicker(
-                  backgroundColor: DailyThingsColors.backgroundColor,
-                  accentColor: DailyThingsColors.themeOrange,
-                  cancelStyle: TextStyles.subheading,
-                  okStyle: TextStyles.subheading,
+                  backgroundColor: Theme.of(context).colorScheme.background,
+                  accentColor: Theme.of(context).colorScheme.primary,
+                  cancelStyle: textStyles.subheading,
+                  okStyle: textStyles.subheading,
                   okText: "Let's go",
                   context: context,
                   value: _time,
@@ -66,9 +68,9 @@ class OnboardTime extends ConsumerWidget {
         const SizedBox(
           height: 10,
         ),
-        const Text(
+        Text(
           "Tap on the white bubble to open time picker to chose a time",
-          style: TextStyles.body,
+          style: textStyles.body,
         ),
       ],
     );

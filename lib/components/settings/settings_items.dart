@@ -9,6 +9,7 @@ import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingsItems extends ConsumerWidget {
@@ -20,8 +21,24 @@ class SettingsItems extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
         child: FlexItems(widgetList: [
+          const SettingsSeparator(
+              name: "T H E M E   Z O N E", icon: PhosphorIconsRegular.moon),
+          SettingsItem(
+              fn: () {
+                final cTheme = ref.watch(appThemeProvider);
+                if (cTheme.id == "dark") {
+                  ref.read(appThemeProvider.notifier).updateTheme("light");
+                } else {
+                  ref.read(appThemeProvider.notifier).updateTheme("dark");
+                }
+              },
+              title: "Change theme",
+              details: "switch between dark & light theme",
+              icon: PhosphorIconsFill.sun),
           //profile things
-          const SettingsSeparator(name: "P R O F I L E", icon: Icons.person),
+          const SettingsSeparator(
+              name: "P R O F I L E",
+              icon: PhosphorIconsRegular.personSimpleWalk),
           SettingsItem(
               fn: () {
                 ref.read(onboardTabsProvider.notifier).updateTab(0);
@@ -41,7 +58,7 @@ class SettingsItems extends ConsumerWidget {
               },
               title: "Change personal details",
               details: "This will allow you to change personal details",
-              icon: Icons.person_3),
+              icon: PhosphorIconsFill.person),
 
           const SizedBox(
             height: 10,

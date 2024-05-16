@@ -1,7 +1,13 @@
 abstract class DailyThingsImages {
   static const logo = "lib/assets/common/logo.png";
+  static const logoLight = "lib/assets/common/dtlight.png";
+
   static const zen = "lib/assets/common/zen.png";
+  static const zenLight = "lib/assets/common/zenlight.png";
+
   static const breathe = "lib/assets/common/breathe.png";
+  static const breatheLight = "lib/assets/common/breathelight.png";
+
   static const noData = "lib/assets/common/nodata.png";
   static const noTasks = "lib/assets/common/notasks.png";
 

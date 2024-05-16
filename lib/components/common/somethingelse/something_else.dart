@@ -10,35 +10,51 @@ class SomethingElse extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
           decoration: BoxDecoration(
-              color: DailyThingsColors.backgroundColor,
+              color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: DailyThingsColors.tertiaryGray.withOpacity(0.3),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.6),
               )),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   "Looking for something else?",
-                  style: TextStyles.heading,
+                  style: textStyles.heading,
                 ),
                 GestureDetector(
                   onTap: () {
                     ref.read(tabsProvider.notifier).updateTab(3);
                   },
-                  child: const Text(
+                  child: Text(
                     "settings page",
                     style: TextStyle(
-                        color: DailyThingsColors.themeBeige,
+                        color: Theme.of(context).colorScheme.secondary,
                         decoration: TextDecoration.underline,
-                        decorationColor: DailyThingsColors.themeBeige),
+                        decorationColor:
+                            Theme.of(context).colorScheme.secondary),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    ref.read(tabsProvider.notifier).updateTab(3);
+                  },
+                  child: Text(
+                    "change app theme",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.secondary,
+                        decoration: TextDecoration.underline,
+                        decorationColor:
+                            Theme.of(context).colorScheme.secondary),
                   ),
                 )
               ],

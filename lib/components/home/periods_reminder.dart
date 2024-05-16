@@ -8,15 +8,17 @@ class PeriodsReminder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     return SliverToBoxAdapter(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               "Hushh, do you remember this?",
-              style: TextStyles.heading,
+              style: textStyles.heading,
             ),
             const SizedBox(
               height: 5,
@@ -27,19 +29,19 @@ class PeriodsReminder extends ConsumerWidget {
                   color: DailyThingsColors.backgroundColor,
                   border: Border.all(color: Colors.white24),
                   borderRadius: BorderRadius.circular(5)),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "It's almost your girlfriends' periods 🎀",
-                    style: TextStyles.subheading,
+                    style: textStyles.subheading,
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.white24,
                   ),
                   Text(
                     "As per last month, she had her periods on 12th, its very close to that date, make sure to sometimes send her some flowers and chocolates 🤗",
-                    style: TextStyles.body,
+                    style: textStyles.body,
                   )
                 ],
               ),

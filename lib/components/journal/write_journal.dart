@@ -20,6 +20,8 @@ class WriteJournal extends ConsumerStatefulWidget {
 class _WriteJournalState extends ConsumerState<WriteJournal> {
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     return SliverToBoxAdapter(
       child: Padding(
@@ -38,7 +40,12 @@ class _WriteJournalState extends ConsumerState<WriteJournal> {
                     child: Container(
                       margin: const EdgeInsets.symmetric(vertical: 20),
                       decoration: BoxDecoration(
-                        color: DailyThingsColors.themeBeige,
+                        border: Border.all(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.5)),
+                        color: Theme.of(context).colorScheme.surface,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Center(
@@ -47,13 +54,13 @@ class _WriteJournalState extends ConsumerState<WriteJournal> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              Text(
                                 "Got something to say?",
-                                style: TextStyles.headingInvert,
+                                style: textStyles.heading,
                               ),
-                              const Text(
+                              Text(
                                 "Let those thoughts come out and lighten you",
-                                style: TextStyles.subheadingDark,
+                                style: textStyles.subheading,
                               ),
                               const SizedBox(
                                 height: 10,
@@ -89,10 +96,13 @@ class _WriteJournalState extends ConsumerState<WriteJournal> {
                       height: size.height / 4,
                       width: size.width,
                       decoration: BoxDecoration(
-                          color: DailyThingsColors.backgroundColor,
+                          color: Theme.of(context).colorScheme.surface,
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
-                              color: DailyThingsColors.tertiaryGray
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.6)
                                   .withOpacity(0.2))),
                       child: Center(
                         child: Column(
@@ -102,13 +112,13 @@ class _WriteJournalState extends ConsumerState<WriteJournal> {
                               DailyThingsImages.cloud,
                               height: 80,
                             ),
-                            const Text(
+                            Text(
                               "Select a date 😬",
-                              style: TextStyles.heading,
+                              style: textStyles.heading,
                             ),
-                            const Text(
+                            Text(
                               "and start penning down your thoughts ✨",
-                              style: TextStyles.italic,
+                              style: textStyles.italic,
                             )
                           ],
                         ),

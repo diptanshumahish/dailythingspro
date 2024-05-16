@@ -37,6 +37,8 @@ class _HomeRemindersState extends ConsumerState<HomeReminders> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     ref.listen(currentDateProvider, (previous, next) {
       if (previous != null) {
         fetchTasks(previous.id);
@@ -52,17 +54,17 @@ class _HomeRemindersState extends ConsumerState<HomeReminders> {
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
           child: Column(
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "Important reminders",
-                    style: TextStyles.heading,
+                    style: textStyles.heading,
                   ),
                   PhosphorIcon(
                     PhosphorIconsRegular.calendarBlank,
-                    color: DailyThingsColors.themeBeige,
+                    color: Theme.of(context).colorScheme.tertiary,
                     size: 16,
                   )
                 ],
@@ -74,8 +76,8 @@ class _HomeRemindersState extends ConsumerState<HomeReminders> {
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     border: Border.all(
-                        color: DailyThingsColors.themeBeige.withOpacity(0.3)),
-                    color: DailyThingsColors.backgroundColor,
+                        color: Theme.of(context).colorScheme.tertiary),
+                    color: Theme.of(context).colorScheme.background,
                     borderRadius: BorderRadius.circular(5)),
                 child: _taskList.isNotEmpty
                     ? Column(
@@ -86,10 +88,10 @@ class _HomeRemindersState extends ConsumerState<HomeReminders> {
                                 desc: e.description))
                             .toList(),
                       )
-                    : const Center(
+                    : Center(
                         child: Text(
                           "No reminders for today, set a few from the daily tab✨",
-                          style: TextStyles.body,
+                          style: textStyles.body,
                         ),
                       ),
               ),

@@ -2,12 +2,15 @@ import 'package:dailythingspro/components/common/arrangements/flex_items.dart';
 import 'package:dailythingspro/components/common/buttons/offset_full_button.dart';
 import 'package:dailythingspro/constants/colors.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
+import 'package:dailythingspro/screens/main/home.dart';
 import 'package:dailythingspro/sqflite/journal/journal_db.dart';
 import 'package:dailythingspro/utils/calendar/glyph/return_glyph.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:page_transition/page_transition.dart';
 
-class FullJournalView extends StatelessWidget {
+class FullJournalView extends ConsumerWidget {
   final int journalId;
   final String title;
   final String time;
@@ -22,18 +25,21 @@ class FullJournalView extends StatelessWidget {
       required this.details});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    TextStyles textStyles = TextStyles(context);
+
     return Scaffold(
-        backgroundColor: DailyThingsColors.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
+                elevation: 10,
                 centerTitle: true,
-                backgroundColor: DailyThingsColors.backgroundColor,
+                backgroundColor: Theme.of(context).colorScheme.surface,
                 title: Text(
                   title,
-                  style: TextStyles.subheading,
+                  style: textStyles.subheading,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -58,7 +64,7 @@ class FullJournalView extends StatelessWidget {
                         ],
                         child: Text(
                           title,
-                          style: TextStyles.heading,
+                          style: textStyles.heading,
                         ),
                       ),
                       Animate(
@@ -67,7 +73,7 @@ class FullJournalView extends StatelessWidget {
                         ],
                         child: Text(
                           time,
-                          style: TextStyles.bodyNavbarActive,
+                          style: textStyles.bodyNavbarActive,
                         ),
                       ),
                       Animate(
@@ -88,7 +94,7 @@ class FullJournalView extends StatelessWidget {
                         ],
                         child: Text(
                           details,
-                          style: TextStyles.body,
+                          style: textStyles.body,
                         ),
                       ),
                       Animate(
@@ -99,7 +105,12 @@ class FullJournalView extends StatelessWidget {
                           content: "Delete journal",
                           fn: () async {
                             await JournalDB().delete(journalId);
-                            Navigator.pop(context);
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                PageTransition(
+                                    child: HomeMain(),
+                                    type: PageTransitionType.leftToRight),
+                                (route) => false);
                           },
                           icon: Icons.delete,
                         ),
@@ -111,9 +122,9 @@ class FullJournalView extends StatelessWidget {
                         effects: const [
                           FadeEffect(delay: Duration(milliseconds: 400))
                         ],
-                        child: const Text(
+                        child: Text(
                           "Zen thinks deleting a journal is not a good idea, nor editing on it, journals are never perfect, they are just a memory, a reflection of everything that happens ✨",
-                          style: TextStyles.italic,
+                          style: textStyles.italic,
                         ),
                       )
                     ], space: 8),

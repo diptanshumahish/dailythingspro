@@ -8,4 +8,5 @@ abstract class DailyThingsKeys {
   static const userMartialStatus = "USER_MARTIAL_STATUS";
   static const allAdded = "USER_COMPLETE";
   static const appStartDate = "APP_START_DATE";
+  static const userTheme = "APP_THEME";
 }

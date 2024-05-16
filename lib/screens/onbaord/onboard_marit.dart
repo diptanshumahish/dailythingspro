@@ -109,6 +109,8 @@ class _OnboardMaritialState extends ConsumerState<OnboardMaritial> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return Column(
       children: [
         situation == "none"
@@ -182,11 +184,11 @@ class _OnboardMaritialState extends ConsumerState<OnboardMaritial> {
               )
             : const SizedBox.shrink(),
         (situation != "none")
-            ? const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+            ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
                   "Don't worry we don't take or store any of your personal information with us in any form, all this information would be stored locally on your devise, helping the app to help you better",
-                  style: TextStyles.body,
+                  style: textStyles.body,
                   textAlign: TextAlign.center,
                 ),
               )

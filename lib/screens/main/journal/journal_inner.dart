@@ -17,24 +17,26 @@ class JournalInner extends ConsumerStatefulWidget {
 class _JournalInnerState extends ConsumerState<JournalInner> {
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     return SafeArea(
       bottom: false,
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Your personal journal",
-                    style: TextStyles.splashHeading,
+                    style: textStyles.splashHeading,
                   ),
                   Text(
                     "Write daily, all that's happening",
-                    style: TextStyles.subheading,
+                    style: textStyles.subheading,
                   )
                 ],
               ),

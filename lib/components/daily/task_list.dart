@@ -48,6 +48,8 @@ class _TaskListState extends ConsumerState<TaskList> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     ref.listen(selectedDateProvider, (previous, next) {
       fetchTasks(next.id);
     });
@@ -81,11 +83,11 @@ class _TaskListState extends ConsumerState<TaskList> {
                       space: 8)
                   : const SizedBox.shrink(),
               _list.isNotEmpty
-                  ? const Padding(
-                      padding: EdgeInsets.all(10.0),
+                  ? Padding(
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(
                         "tap on a task to mark it complete/incomplete, swipe a task to delete it",
-                        style: TextStyles.italic,
+                        style: textStyles.italic,
                       ),
                     )
                   : Animate(
@@ -103,9 +105,9 @@ class _TaskListState extends ConsumerState<TaskList> {
                               const SizedBox(
                                 height: 20,
                               ),
-                              const Text(
+                              Text(
                                 "No tasks yet for the date",
-                                style: TextStyles.subheading,
+                                style: textStyles.subheading,
                               ),
                             ],
                           ),

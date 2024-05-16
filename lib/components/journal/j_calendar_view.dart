@@ -43,6 +43,8 @@ class _JCalendarViewState extends ConsumerState<JCalendarView> {
 
   @override
   Widget build(BuildContext context) {
+    TextStyles textStyles = TextStyles(context);
+
     final size = MediaQuery.of(context).size;
     if (_selctedId == "") {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -125,7 +127,7 @@ class _JCalendarViewState extends ConsumerState<JCalendarView> {
                 children: [
                   Text(
                     "${getMonthName(_cal.month)}, $_year",
-                    style: TextStyles.heading,
+                    style: textStyles.heading,
                   ),
                   Row(
                     children: [
@@ -141,9 +143,9 @@ class _JCalendarViewState extends ConsumerState<JCalendarView> {
                             _cal = getCalendarView(_month, _year);
                           });
                         },
-                        child: const Text(
+                        child: Text(
                           "Prev",
-                          style: TextStyles.subheading,
+                          style: textStyles.subheading,
                         ),
                       ),
                       const SizedBox(
@@ -161,9 +163,9 @@ class _JCalendarViewState extends ConsumerState<JCalendarView> {
                             _cal = getCalendarView(_month, _year);
                           });
                         },
-                        child: const Text(
+                        child: Text(
                           "Next",
-                          style: TextStyles.subheading,
+                          style: textStyles.subheading,
                         ),
                       )
                     ],
