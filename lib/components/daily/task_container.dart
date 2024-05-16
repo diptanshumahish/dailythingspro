@@ -52,10 +52,10 @@ class TaskContainer extends ConsumerWidget {
                 color: isComplete
                     ? Colors.white
                     : DailyThingsColors.backgroundColor),
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
                 color: Colors.white,
-                offset: Offset(2, 2),
+                offset: isComplete ? const Offset(1, 1) : const Offset(3, 3),
                 blurRadius: 0,
                 spreadRadius: 0,
               ),

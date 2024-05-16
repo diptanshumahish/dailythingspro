@@ -12,7 +12,7 @@ class SomethingElse extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15.0),
         child: Container(
           decoration: BoxDecoration(
               color: DailyThingsColors.backgroundColor,
@@ -25,7 +25,7 @@ class SomethingElse extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Looking for something else?",
                   style: TextStyles.heading,
                 ),
@@ -33,7 +33,7 @@ class SomethingElse extends ConsumerWidget {
                   onTap: () {
                     ref.read(tabsProvider.notifier).updateTab(3);
                   },
-                  child: Text(
+                  child: const Text(
                     "settings page",
                     style: TextStyle(
                         color: DailyThingsColors.themeBeige,

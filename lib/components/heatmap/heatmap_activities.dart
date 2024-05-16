@@ -55,15 +55,15 @@ class _HeatMapActivitiesState extends ConsumerState<HeatMapActivities> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Your activities data",
               style: TextStyles.subheading,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Animate(
-              effects: [ScaleEffect()],
+              effects: const [ScaleEffect()],
               child: Container(
                 width: size.width,
                 decoration: BoxDecoration(
@@ -100,8 +100,8 @@ class _HeatMapActivitiesState extends ConsumerState<HeatMapActivities> {
                       )
                     ],
                     colorTipCount: 3,
-                    colorsets: {1: Colors.green},
-                    margin: EdgeInsets.all(4),
+                    colorsets: const {1: Colors.green},
+                    margin: const EdgeInsets.all(4),
                     fontSize: 12,
                   ),
                 ),

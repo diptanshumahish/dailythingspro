@@ -4,7 +4,6 @@ import 'package:dailythingspro/state/current/current_date.dart';
 import 'package:dailythingspro/state/journal/selected_date.dart';
 import 'package:dailythingspro/state/onboard_Tabs/onboard_tabs.dart';
 import 'package:dailythingspro/state/user/user.dart';
-import 'package:dailythingspro/utils/calendar/calendar_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final onboardTabsProvider =

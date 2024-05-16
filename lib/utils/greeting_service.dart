@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:flutter/material.dart';
 
 const generalGreetings = [

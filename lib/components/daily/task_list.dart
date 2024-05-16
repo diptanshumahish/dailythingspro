@@ -82,9 +82,9 @@ class _TaskListState extends ConsumerState<TaskList> {
                   : const SizedBox.shrink(),
               _list.isNotEmpty
                   ? const Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(10.0),
                       child: Text(
-                        "tap on a task to mark it complete/incomplete",
+                        "tap on a task to mark it complete/incomplete, swipe a task to delete it",
                         style: TextStyles.italic,
                       ),
                     )

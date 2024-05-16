@@ -17,7 +17,7 @@ final TextEditingController _titleController = TextEditingController();
 final TextEditingController _descController = TextEditingController();
 final TextEditingController _catController = TextEditingController();
 
-String _time = "Choose a time";
+String _time = "--";
 
 class TaskEntryPopup extends ConsumerStatefulWidget {
   final String dayKey;
