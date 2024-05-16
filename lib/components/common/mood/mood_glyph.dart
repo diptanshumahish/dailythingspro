@@ -1,16 +1,16 @@
 import 'package:dailythingspro/constants/colors.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
-import 'package:dailythingspro/screens/onbaord/onbaord_age.dart';
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MoodGlyph extends StatelessWidget {
-  final String image;
+  final IconData icon;
   final String name;
   final Function(String mood) res;
   final bool isActive;
   const MoodGlyph(
       {super.key,
-      required this.image,
+      required this.icon,
       required this.name,
       required this.res,
       required this.isActive});
@@ -24,27 +24,32 @@ class MoodGlyph extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             color: isActive
-                ? DailyThingsColors.themeBeige.withOpacity(0.3)
+                ? DailyThingsColors.themeBeige
                 : DailyThingsColors.themeBeige.withOpacity(0.1),
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-                color: DailyThingsColors.themeBeige.withOpacity(0.2))),
+                color: isActive
+                    ? DailyThingsColors.backgroundColor.withOpacity(0.2)
+                    : DailyThingsColors.themeBeige.withOpacity(0.2))),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                image,
-                height: 20,
+              PhosphorIcon(
+                icon,
+                color: isActive
+                    ? DailyThingsColors.backgroundColor
+                    : DailyThingsColors.tertiaryGray,
               ),
               const SizedBox(
                 width: 5,
               ),
               Text(
                 name,
-                style: TextStyles.body,
+                style: isActive ? TextStyles.bodyInvert : TextStyles.body,
               )
             ],
           ),

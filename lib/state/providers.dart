@@ -1,4 +1,5 @@
 import 'package:dailythingspro/state/Tabs/tabselector.model.dart';
+import 'package:dailythingspro/state/app_start/app_start_date.dart';
 import 'package:dailythingspro/state/current/current_date.dart';
 import 'package:dailythingspro/state/journal/selected_date.dart';
 import 'package:dailythingspro/state/onboard_Tabs/onboard_tabs.dart';
@@ -22,3 +23,6 @@ final selectedDateProvider =
 final currentDateProvider =
     StateNotifierProvider<CurrentDateNotifier, CurrentDate>(
         (ref) => CurrentDateNotifier());
+final appStartDateProvider =
+    StateNotifierProvider<AppStartDateNotifier, AppStartDate>(
+        (ref) => AppStartDateNotifier());

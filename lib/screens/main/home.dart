@@ -1,5 +1,6 @@
 import 'package:dailythingspro/components/common/navbar/bottom_navbar.dart';
 import 'package:dailythingspro/constants/colors.dart';
+import 'package:dailythingspro/screens/journey/journey_inner.dart';
 import 'package:dailythingspro/screens/main/daily/daily_inner.dart';
 import 'package:dailythingspro/screens/main/home/home_inner.dart';
 import 'package:dailythingspro/screens/main/journal/journal_inner.dart';
@@ -20,6 +21,9 @@ final List<Widget> _pages = [
   ),
   const SettingsInner(
     key: Key("set"),
+  ),
+  const JourneyInner(
+    key: Key("Journey"),
   )
 ];
 

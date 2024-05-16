@@ -1,13 +1,16 @@
 import 'package:dailythingspro/constants/colors.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:dailythingspro/sqflite/daily/daily_db.dart';
+import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-class TaskContainer extends StatelessWidget {
+class TaskContainer extends ConsumerWidget {
   final int id;
   final bool isComplete;
   final String title;
+  final String dayKey;
   final String desc;
   final String completionTime;
   final String category;
@@ -16,18 +19,20 @@ class TaskContainer extends StatelessWidget {
       required this.isComplete,
       required this.id,
       required this.title,
+      required this.dayKey,
       required this.desc,
       required this.completionTime,
       required this.category});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.of(context).size;
     return Slidable(
       endActionPane: ActionPane(motion: const StretchMotion(), children: [
         SlidableAction(
-          onPressed: (context) {
-            DailyDB().delete(id);
+          onPressed: (context) async {
+            await DailyDB().delete(id);
+            ref.read(selectedDateProvider.notifier).updateID(dayKey);
           },
           label: "Delete",
           icon: Icons.delete,

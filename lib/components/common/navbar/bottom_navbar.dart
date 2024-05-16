@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:dailythingspro/components/common/navbar/navbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class BottomNavbar extends StatelessWidget {
   const BottomNavbar({super.key});
@@ -23,15 +24,28 @@ class BottomNavbar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 NavbarContent(
-                  icon: Icon(Icons.home),
+                  icon: PhosphorIconsRegular.houseSimple,
+                  selectedIcon: PhosphorIconsFill.houseSimple,
                   name: "Home",
                   idx: 0,
                 ),
-                NavbarContent(icon: Icon(Icons.book), name: "Journal", idx: 1),
                 NavbarContent(
-                    icon: Icon(Icons.whatshot_rounded), name: "Daily", idx: 2),
+                    icon: PhosphorIconsRegular.book,
+                    selectedIcon: PhosphorIconsFill.book,
+                    name: "Journal",
+                    idx: 1),
                 NavbarContent(
-                    icon: Icon(Icons.settings), name: "Settings", idx: 3)
+                    icon: PhosphorIconsRegular.lightbulb,
+                    selectedIcon: PhosphorIconsFill.lightbulb,
+                    name: "Daily",
+                    idx: 2),
+                // NavbarContent(
+                //     icon: Icon(Icons.settings), name: "Settings", idx: 3),
+                NavbarContent(
+                    icon: PhosphorIconsRegular.medal,
+                    selectedIcon: PhosphorIconsFill.medal,
+                    name: "Journey",
+                    idx: 4)
               ],
             ),
           ),

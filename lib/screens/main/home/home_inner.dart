@@ -7,6 +7,7 @@ import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class HomeInner extends ConsumerWidget {
   const HomeInner({super.key});
@@ -20,6 +21,13 @@ class HomeInner extends ConsumerWidget {
       physics: const BouncingScrollPhysics(),
       slivers: [
         SliverAppBar.large(
+          actions: [
+            IconButton(
+                onPressed: () {
+                  ref.read(tabsProvider.notifier).updateTab(3);
+                },
+                icon: const PhosphorIcon(PhosphorIconsFill.flower))
+          ],
           title: const Text(
             "DailyThings",
             style: TextStyles.subheading,
@@ -38,8 +46,7 @@ class HomeInner extends ConsumerWidget {
           id: currentId.id,
         ),
         // PeriodsReminder(),
-        HeatMapActivities(
-            startDate: DateTime.now().subtract(Duration(hours: 1))),
+        const HeatMapActivities(),
         const SliverToBoxAdapter(
           child: SizedBox(
             height: 100,

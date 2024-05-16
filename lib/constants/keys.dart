@@ -7,4 +7,5 @@ abstract class DailyThingsKeys {
   static const userGenderKey = "USER_GENDER_KEY";
   static const userMartialStatus = "USER_MARTIAL_STATUS";
   static const allAdded = "USER_COMPLETE";
+  static const appStartDate = "APP_START_DATE";
 }

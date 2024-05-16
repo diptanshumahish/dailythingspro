@@ -8,6 +8,7 @@ import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 List<DailyTaskEntry> _list = [];
 
@@ -68,6 +69,7 @@ class _TaskListState extends ConsumerState<TaskList> {
                                       .updateID(e.dayKey);
                                 },
                                 child: TaskContainer(
+                                    dayKey: e.dayKey,
                                     id: e.id,
                                     isComplete: e.isCompleted == 1,
                                     title: e.title,

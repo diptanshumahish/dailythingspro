@@ -7,6 +7,7 @@ import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 List<DailyTaskEntry> _taskList = [];
 
@@ -59,10 +60,10 @@ class _HomeRemindersState extends ConsumerState<HomeReminders> {
                     "Important reminders",
                     style: TextStyles.heading,
                   ),
-                  Icon(
-                    Icons.event,
-                    size: 15,
-                    color: DailyThingsColors.tertiaryGray,
+                  PhosphorIcon(
+                    PhosphorIconsRegular.calendarBlank,
+                    color: DailyThingsColors.themeBeige,
+                    size: 16,
                   )
                 ],
               ),

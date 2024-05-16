@@ -27,6 +27,7 @@ dependencies:
     url_launcher: ^6.2.6
     flutter_heatmap_calendar: ^1.0.5
     flutter_slidable: ^3.1.0
+    phosphor_flutter: ^2.1.0
 
 dev_dependencies:
     flutter_test:
@@ -44,7 +45,6 @@ flutter:
         - lib/assets/common/
         - assets/audio/
         - lib/assets/main/
-        - lib/assets/glyphs/
 
     fonts:
         - family: Cabinet

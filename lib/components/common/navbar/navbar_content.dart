@@ -5,17 +5,21 @@ import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:vibration/vibration.dart';
 
 class NavbarContent extends ConsumerWidget {
-  final Icon icon;
+  final IconData icon;
   final String name;
   final int idx;
+  final IconData selectedIcon;
   const NavbarContent({
     super.key,
     required this.icon,
     required this.name,
+    required this.selectedIcon,
     required this.idx,
   });
 
@@ -51,11 +55,11 @@ class NavbarContent extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon.icon,
+          PhosphorIcon(
+            selectedTab.tab != idx ? icon : selectedIcon,
             color: selectedTab.tab != idx
                 ? Colors.white54
-                : DailyThingsColors.themeOrange,
+                : DailyThingsColors.themeBeige,
           ),
           Text(
             name,

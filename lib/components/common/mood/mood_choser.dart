@@ -1,8 +1,8 @@
 import 'package:dailythingspro/components/common/mood/mood_glyph.dart';
-import 'package:dailythingspro/constants/images.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MoodChooser extends StatelessWidget {
   final Function(String mood) moodResponse;
@@ -30,7 +30,7 @@ class MoodChooser extends StatelessWidget {
             runSpacing: 5,
             children: [
               MoodGlyph(
-                image: DailyThingsImages.happy,
+                icon: PhosphorIconsRegular.smiley,
                 name: "happy",
                 res: (mood) {
                   moodResponse(mood);
@@ -38,28 +38,28 @@ class MoodChooser extends StatelessWidget {
                 isActive: selectedOne == "happy",
               ),
               MoodGlyph(
-                  image: DailyThingsImages.love,
+                  icon: PhosphorIconsRegular.smileyMelting,
                   name: "love",
                   res: (mood) {
                     moodResponse(mood);
                   },
                   isActive: selectedOne == "love"),
               MoodGlyph(
-                  image: DailyThingsImages.blank,
+                  icon: PhosphorIconsRegular.smileyMeh,
                   name: "blank",
                   res: (mood) {
                     moodResponse(mood);
                   },
                   isActive: selectedOne == "blank"),
               MoodGlyph(
-                  image: DailyThingsImages.angry,
+                  icon: PhosphorIconsRegular.smileyAngry,
                   name: "angry",
                   res: (mood) {
                     moodResponse(mood);
                   },
                   isActive: selectedOne == "angry"),
               MoodGlyph(
-                  image: DailyThingsImages.dead,
+                  icon: PhosphorIconsRegular.smileyXEyes,
                   name: "dead",
                   res: (mood) {
                     moodResponse(mood);
