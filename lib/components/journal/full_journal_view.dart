@@ -45,7 +45,12 @@ class FullJournalView extends ConsumerWidget {
                 ),
                 leading: IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          PageTransition(
+                              child: HomeMain(),
+                              type: PageTransitionType.leftToRight),
+                          (route) => false);
                     },
                     icon: const Icon(
                       Icons.arrow_back_ios,
