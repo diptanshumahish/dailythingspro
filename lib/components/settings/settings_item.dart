@@ -1,4 +1,3 @@
-import 'package:dailythingspro/constants/colors.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 

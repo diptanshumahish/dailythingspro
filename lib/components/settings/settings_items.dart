@@ -85,6 +85,7 @@ class SettingsItems extends ConsumerWidget {
               title: "Delete all journals",
               details: "This will delete all journals permanently",
               icon: Icons.delete_forever),
+
           SettingsItem(
               fn: () {
                 showDialog(
@@ -104,6 +105,20 @@ class SettingsItems extends ConsumerWidget {
               title: "Delete all daily tasks",
               details: "This will delete all daily items permanently",
               icon: Icons.delete_forever),
+          SettingsItem(
+              fn: () async {
+                await JournalDB().backupAndShareDatabase();
+              },
+              title: "Backup Journals",
+              details: "Keep a local backup of your journals",
+              icon: Icons.backup),
+          SettingsItem(
+              fn: () async {
+                await JournalDB().chooseAndRestoreDatabase();
+              },
+              title: "Restore Journals",
+              details: "Restore journals from your local device",
+              icon: Icons.restore),
           const SizedBox(
             height: 10,
           ),

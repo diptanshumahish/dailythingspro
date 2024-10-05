@@ -1,10 +1,81 @@
+import 'dart:io';
 import 'package:dailythingspro/sqflite/common.dart';
 import 'package:dailythingspro/sqflite/models/journal_model.dart';
+import 'package:dailythingspro/utils/notif_service.dart';
+import 'package:dailythingspro/utils/toast.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
+// ignore: depend_on_referenced_packages
+import 'package:path/path.dart';
 
 class JournalDB {
   final tableName = 'journal';
   final dbName = "journal.db";
+
+  Future<void> backupAndShareDatabase() async {
+    try {
+      String dbPath = await getDatabasesPath();
+      String journalDBPath = join(dbPath, 'journal.db');
+
+      Directory? externalDir = await getExternalStorageDirectory();
+      if (externalDir != null) {
+        String backupPath = join(externalDir.path, 'journal_backup.db');
+        File originalDbFile = File(journalDBPath);
+        await originalDbFile.copy(backupPath);
+        await Share.shareXFiles([XFile(backupPath)],
+            text: 'Here is my journal backup file.');
+        DTNotificationService().showNotification(
+            body:
+                "Share your backup file to some storage source, such as a drive or otherwise store it locally, you can use this for backup",
+            title: "Preserve your backup🎉");
+      } else {}
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error while backing up database: $e');
+      }
+    }
+  }
+
+  Future<void> restoreDatabase(String backupPath) async {
+    try {
+      String dbPath = await getDatabasesPath();
+      String journalDBPath = join(dbPath, 'journal.db');
+      await closeDatabase();
+      File backupDbFile = File(backupPath);
+      File journalDbFile = File(journalDBPath);
+
+      await journalDbFile.delete(); 
+      await backupDbFile.copy(
+          journalDBPath); 
+
+      await DatabaseService().getDatabase(dbName);
+
+      ToastShow.returnToast('Database restored from: $backupPath');
+    } catch (e) {
+      ToastShow.returnToast('Error while restoring database: $e');
+    }
+  }
+
+  Future<void> chooseAndRestoreDatabase() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.any,
+      );
+
+      if (result != null) {
+        String backupFilePath = result.files.single.path!; // Get the file path
+        await restoreDatabase(backupFilePath);
+        ToastShow.returnToast('Database restored successfully from: $backupFilePath');
+      } else {
+        ToastShow.returnToast('No file selected.');
+      }
+    } catch (e) {
+      ToastShow.returnToast('Error during file selection or restoration: $e');
+    }
+  }
 
   Future<void> createTable(Database database) async {
     await database.execute("""CREATE TABLE IF NOT EXISTS $tableName (
@@ -51,5 +122,14 @@ class JournalDB {
     final numberOfDeleted =
         await database.rawDelete('''DELETE FROM $tableName''');
     return numberOfDeleted;
+  }
+
+  // Function to close the database before restoring
+  Future<void> closeDatabase() async {
+    Database? database = await DatabaseService().getDatabase(dbName);
+    await database.close();
+    if (kDebugMode) {
+      print("Database closed.");
+    }
   }
 }

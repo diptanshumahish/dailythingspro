@@ -1,5 +1,4 @@
 import 'package:dailythingspro/components/common/buttons/offset_full_button.dart';
-import 'package:dailythingspro/constants/colors.dart';
 import 'package:dailythingspro/constants/images.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:dailythingspro/screens/writer/writer_screen.dart';

@@ -4,6 +4,7 @@ import 'package:dailythingspro/components/journal/write_journal.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 String _selectedId = "";
 
@@ -55,7 +56,37 @@ class _JournalInnerState extends ConsumerState<JournalInner> {
           PreviousJournals(selectedId: _selectedId),
           const SliverToBoxAdapter(
             child: SizedBox(
-              height: 200,
+              height: 100,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
+              child: Column(
+                children: [
+                 const Icon(Icons.pages,size: 48,),
+                  Text(
+                    "Manually Backup your journals",
+                    style: textStyles.heading,
+                  ),
+                  Text(
+                    "Zen respects your full privacy, it's upto you how you backup the data, we provide you your backup file, and then you can restore from it whenever you want. Click the link below and learn how to backup files manually with your full control",
+                    style: textStyles.body,
+                    textAlign: TextAlign.center,
+                  ),
+                  GestureDetector(
+                    onTap: ()async{
+                      await launchUrl(Uri.parse("https://diptanshumahish.in/dailythings/how-to-backup"));
+                    },
+                    child: Text("learn more",style: textStyles.subheading.copyWith(decoration: TextDecoration.underline),))
+                ],
+              ),
+            ),
+          ),
+           const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 300,
             ),
           ),
         ],

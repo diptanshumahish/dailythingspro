@@ -140,13 +140,19 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                                 (route) => false);
                           },
                           child: Center(
-                            child: Animate(effects: const [
-                              FlipEffect(
-                                delay: Duration(milliseconds: 200),
-                                curve: Curves.easeInOut,
-                                duration: Duration(milliseconds: 900),
-                              )
-                            ], child: const Icon(Icons.arrow_forward_outlined)),
+                            child: Animate(
+                                effects: const [
+                                  FlipEffect(
+                                    delay: Duration(milliseconds: 200),
+                                    curve: Curves.easeInOut,
+                                    duration: Duration(milliseconds: 900),
+                                  )
+                                ],
+                                child: Icon(Icons.arrow_forward_outlined,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.black
+                                        : Colors.white)),
                           ),
                         ),
                       ),

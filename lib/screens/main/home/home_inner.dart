@@ -28,7 +28,7 @@ class HomeInner extends ConsumerWidget {
                 onPressed: () {
                   ref.read(tabsProvider.notifier).updateTab(3);
                 },
-                icon: const PhosphorIcon(PhosphorIconsFill.flower))
+                icon: const PhosphorIcon(PhosphorIconsFill.flower, color: Colors.black,))
           ],
           title: Text(
             "DailyThings",

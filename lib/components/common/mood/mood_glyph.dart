@@ -1,4 +1,3 @@
-import 'package:dailythingspro/constants/colors.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -21,6 +20,7 @@ class MoodGlyph extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
+        
         res(name);
       },
       child: Container(
@@ -34,7 +34,7 @@ class MoodGlyph extends StatelessWidget {
                     ? Theme.of(context).colorScheme.primary
                     : Theme.of(context).colorScheme.primary.withOpacity(0.5))),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,

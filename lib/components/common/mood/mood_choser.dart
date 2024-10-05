@@ -29,7 +29,7 @@ class MoodChooser extends StatelessWidget {
           Wrap(
             direction: Axis.horizontal,
             spacing: 10,
-            runSpacing: 5,
+            runSpacing: 10,
             children: [
               MoodGlyph(
                 icon: PhosphorIconsRegular.smiley,
@@ -66,7 +66,28 @@ class MoodChooser extends StatelessWidget {
                   res: (mood) {
                     moodResponse(mood);
                   },
-                  isActive: selectedOne == "dead")
+                  isActive: selectedOne == "dead"),
+              MoodGlyph(
+                  icon: PhosphorIconsRegular.smileySad,
+                  name: "sad",
+                  res: (mood) {
+                    moodResponse(mood);
+                  },
+                  isActive: selectedOne == "sad"),
+              MoodGlyph(
+                  icon: PhosphorIconsRegular.smileyNervous,
+                  name: "nervous",
+                  res: (mood) {
+                    moodResponse(mood);
+                  },
+                  isActive: selectedOne == "nervous"),
+              MoodGlyph(
+                  icon: PhosphorIconsRegular.heartBreak,
+                  name: "heart break",
+                  res: (mood) {
+                    moodResponse(mood);
+                  },
+                  isActive: selectedOne == "heartbreak")
             ],
           )
         ],
