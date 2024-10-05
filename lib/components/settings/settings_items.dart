@@ -65,7 +65,7 @@ class SettingsItems extends ConsumerWidget {
           ),
           //delete things
           const SettingsSeparator(
-              name: "D A N G E R   Z O N E", icon: Icons.warning),
+              name: "A C T I O N    Z O N E", icon: Icons.warning),
           SettingsItem(
               fn: () {
                 showDialog(
