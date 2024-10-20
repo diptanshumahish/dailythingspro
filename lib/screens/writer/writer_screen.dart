@@ -78,7 +78,7 @@ class _WriterScreenState extends ConsumerState<WriterScreen> {
           slivers: [
             SliverAppBar(
               elevation: 5,
-              backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: Theme.of(context).colorScheme.background,
               title: Text(
                 "Pen down your thoughts",
                 style: textStyles.subheading,

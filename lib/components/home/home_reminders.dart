@@ -1,5 +1,4 @@
 import 'package:dailythingspro/components/home/reminder_item.dart';
-import 'package:dailythingspro/constants/colors.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
 import 'package:dailythingspro/sqflite/daily/daily_db.dart';
 import 'package:dailythingspro/sqflite/models/daily_task_entry.dart';
@@ -73,10 +72,11 @@ class _HomeRemindersState extends ConsumerState<HomeReminders> {
                 height: 5,
               ),
               Container(
+                margin: const EdgeInsets.symmetric(vertical: 5),
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     border: Border.all(
-                        color: Theme.of(context).colorScheme.tertiary),
+                        color: Theme.of(context).colorScheme.tertiary.withOpacity(0.3)),
                     color: Theme.of(context).colorScheme.background,
                     borderRadius: BorderRadius.circular(5)),
                 child: _taskList.isNotEmpty

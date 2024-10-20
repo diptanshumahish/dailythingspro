@@ -31,9 +31,9 @@ class JContainer extends StatelessWidget {
           color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.5))),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.2))),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -42,7 +42,7 @@ class JContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(
-                  PhosphorIconsRegular.timer,
+                  PhosphorIconsRegular.hourglass,
                   color: Theme.of(context).colorScheme.secondary,
                   size: 12,
                 ),
@@ -83,10 +83,11 @@ class JContainer extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             Divider(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
               indent: 0,
               endIndent: 0,
             ),
+            const SizedBox(height: 5,),
             returnGlyphDataMood(mood)
           ],
         ),

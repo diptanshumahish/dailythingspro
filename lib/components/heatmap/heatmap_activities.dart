@@ -70,7 +70,7 @@ class _HeatMapActivitiesState extends ConsumerState<HeatMapActivities> {
                 width: size.width,
                 decoration: BoxDecoration(
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.tertiary,
+                      color: Theme.of(context).colorScheme.tertiary.withOpacity(0.3),
                     ),
                     borderRadius: BorderRadius.circular(8)),
                 child: Padding(

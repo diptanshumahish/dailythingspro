@@ -2,6 +2,7 @@ import 'package:dailythingspro/components/journal/j_calendar_view.dart';
 import 'package:dailythingspro/components/journal/previous_journals.dart';
 import 'package:dailythingspro/components/journal/write_journal.dart';
 import 'package:dailythingspro/constants/text_styles.dart';
+import 'package:dailythingspro/state/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -19,6 +20,14 @@ class _JournalInnerState extends ConsumerState<JournalInner> {
   @override
   Widget build(BuildContext context) {
     TextStyles textStyles = TextStyles(context);
+
+    /// set current date as selected date if no date selected
+    if (mounted && _selectedId == "") {
+      final id = ref.watch(currentDateProvider);
+      setState(() {
+        _selectedId = id.id;
+      });
+    }
 
     return SafeArea(
       bottom: false,
@@ -65,7 +74,10 @@ class _JournalInnerState extends ConsumerState<JournalInner> {
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
               child: Column(
                 children: [
-                 const Icon(Icons.pages,size: 48,),
+                  const Icon(
+                    Icons.pages,
+                    size: 48,
+                  ),
                   Text(
                     "Manually Backup your journals",
                     style: textStyles.heading,
@@ -76,15 +88,20 @@ class _JournalInnerState extends ConsumerState<JournalInner> {
                     textAlign: TextAlign.center,
                   ),
                   GestureDetector(
-                    onTap: ()async{
-                      await launchUrl(Uri.parse("https://diptanshumahish.in/dailythings/how-to-backup"));
-                    },
-                    child: Text("learn more",style: textStyles.subheading.copyWith(decoration: TextDecoration.underline),))
+                      onTap: () async {
+                        await launchUrl(Uri.parse(
+                            "https://diptanshumahish.in/dailythings/how-to-backup"));
+                      },
+                      child: Text(
+                        "learn more",
+                        style: textStyles.subheading
+                            .copyWith(decoration: TextDecoration.underline),
+                      ))
                 ],
               ),
             ),
           ),
-           const SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: SizedBox(
               height: 300,
             ),

@@ -16,11 +16,12 @@ class SomethingElse extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: Theme.of(context).colorScheme.primary.withOpacity(0.6),
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
               )),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -38,6 +39,7 @@ class SomethingElse extends ConsumerWidget {
                   child: Text(
                     "settings page",
                     style: TextStyle(
+                      fontSize: 16,
                         color: Theme.of(context).colorScheme.secondary,
                         decoration: TextDecoration.underline,
                         decorationColor:
@@ -51,6 +53,7 @@ class SomethingElse extends ConsumerWidget {
                   child: Text(
                     "change app theme",
                     style: TextStyle(
+                      fontSize: 16,
                         color: Theme.of(context).colorScheme.secondary,
                         decoration: TextDecoration.underline,
                         decorationColor:

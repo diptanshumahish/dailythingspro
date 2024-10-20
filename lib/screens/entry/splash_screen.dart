@@ -160,7 +160,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
                         height: 5,
                       ),
                       Text(
-                        "Version 3.0.2",
+                        "Version 3.1.0",
                         style: textStyles.caption,
                       )
                     ],

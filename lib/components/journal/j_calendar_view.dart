@@ -43,6 +43,13 @@ class _JCalendarViewState extends ConsumerState<JCalendarView> {
 
   @override
   Widget build(BuildContext context) {
+    if (mounted) {
+      final temp = ref.read(selectedDateProvider);
+      setState(() {
+        _selctedId = temp.id;
+      });
+    }
+
     TextStyles textStyles = TextStyles(context);
 
     final size = MediaQuery.of(context).size;
@@ -60,7 +67,10 @@ class _JCalendarViewState extends ConsumerState<JCalendarView> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final currentDayIndex = _cal.data.indexWhere((e) => e.id == _selctedId);
         if (currentDayIndex != -1) {
-          _scrollController.animateTo(currentDayIndex * size.width / 6.5,
+          _scrollController.animateTo(
+              currentDayIndex < 21
+                  ? currentDayIndex * size.width / 8
+                  : currentDayIndex * size.width / 7.5,
               duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOut);
         }

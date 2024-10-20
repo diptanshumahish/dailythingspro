@@ -68,19 +68,20 @@ class _PreviousJournalsState extends ConsumerState<PreviousJournals> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
                 child: FlexItems(widgetList: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Available journals 📖",
-                        style: textStyles.subheading,
-                      ),
-                      Text(
-                        "tap on the journals to read them",
-                        style: textStyles.body,
-                      )
-                    ],
-                  ),
+                  if (_journalList.isNotEmpty)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Here are the available journals 📖",
+                          style: textStyles.subheading,
+                        ),
+                        Text(
+                          "tap on the journals to read them",
+                          style: textStyles.body,
+                        )
+                      ],
+                    ),
                   _journalList.isNotEmpty
                       ? AnimatedSwitcher(
                           switchInCurve: Curves.easeInOut,

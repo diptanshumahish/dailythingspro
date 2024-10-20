@@ -37,13 +37,14 @@ class _WriteJournalState extends ConsumerState<WriteJournal> {
                 ? Animate(
                     effects: const [FadeEffect()],
                     child: Container(
+                      padding: const EdgeInsets.only(left: 6, right: 6, bottom: 12, top: 4),
                       margin: const EdgeInsets.symmetric(vertical: 20),
                       decoration: BoxDecoration(
                         border: Border.all(
                             color: Theme.of(context)
                                 .colorScheme
                                 .primary
-                                .withOpacity(0.5)),
+                                .withOpacity(0.3)),
                         color: Theme.of(context).colorScheme.surface,
                         borderRadius: BorderRadius.circular(8),
                       ),
